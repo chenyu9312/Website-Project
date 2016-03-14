@@ -1,0 +1,50 @@
+﻿body {
+}
+
+th {
+    background-color: white;
+    color: black;
+}
+
+button{ 
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-color:white;
+    padding: 5px 0px; 
+    background: white;
+}
+
+/*
+button:hover{   
+    border-bottom-style: solid;
+    border-bottom-color:#6b6060;
+    padding: 5px 0px; 
+    background: white;
+    border-radius: 1px;
+}
+    */
+
+#Header th{   
+    border-bottom: solid 3px #d6d6d6;
+    padding: 12px 5px; 
+    color:green;
+}
+
+
+
+#Header th:hover{   
+    border-bottom: solid 3px #6b6060;
+    color:green;
+}
+
+    
+
+#Header tr:hover{   
+    /*border-bottom-color:#ad9e9e;*/
+      border-bottom: solid 3px #ad9e9e;*/
+}
+
+
+
+
+

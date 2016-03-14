@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="204b7792a7bb4700a5176b8341a034d1" Name="Diagram1">
+        <EntityTypeShape EntityType="ProgramInformationModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProgramInformationModel.ChairInfo" Width="1.5" PointX="7.875" PointY="5.625" />
+        <EntityTypeShape EntityType="ProgramInformationModel.CoordinatorInfo" Width="1.5" PointX="10.125" PointY="1.75" />
+        <EntityTypeShape EntityType="ProgramInformationModel.DeanInfo" Width="1.5" PointX="5.625" PointY="9.125" />
+        <EntityTypeShape EntityType="ProgramInformationModel.DepartmentInfo" Width="1.5" PointX="5.625" PointY="3.625" />
+        <EntityTypeShape EntityType="ProgramInformationModel.ProgramInfo" Width="1.5" PointX="7.875" PointY="1.375" />
+        <EntityTypeShape EntityType="ProgramInformationModel.SchoolInfo" Width="1.5" PointX="3.375" PointY="5.625" />
+        <AssociationConnector Association="ProgramInformationModel.FK_ChairInfo_DepartmentInfo" />
+        <AssociationConnector Association="ProgramInformationModel.FK_CoordinatorInfo_ProgramInfo" />
+        <AssociationConnector Association="ProgramInformationModel.FK_DeanInfo_SchoolInfo" />
+        <AssociationConnector Association="ProgramInformationModel.FK_DepartmentInfo_SchoolInfo" />
+        <AssociationConnector Association="ProgramInformationModel.FK_ProgramInfo_DepartmentInfo" />
+        <EntityTypeShape EntityType="ProgramInformationModel.CVSApproval" Width="1.5" PointX="10.125" PointY="5.625" />
+        <AssociationConnector Association="ProgramInformationModel.FK_CVSApproval_ProgramInfo" />
+        <EntityTypeShape EntityType="ProgramInformationModel.MTCUApproval" Width="1.5" PointX="10.125" PointY="9.5" />
+        <AssociationConnector Association="ProgramInformationModel.FK_MTCUApproval_ProgramInfo" />
+        <EntityTypeShape EntityType="ProgramInformationModel.PEQABReport" Width="1.5" PointX="10.125" PointY="14" />
+        <AssociationConnector Association="ProgramInformationModel.FK_PEQABReport_ProgramInfo" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

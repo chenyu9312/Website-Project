@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProgramInformationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="ProgramInfoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="ChairInfoes" EntityType="ProgramInformationModel.ChairInfo" />
+    <EntitySet Name="CoordinatorInfoes" EntityType="ProgramInformationModel.CoordinatorInfo" />
+    <EntitySet Name="DeanInfoes" EntityType="ProgramInformationModel.DeanInfo" />
+    <EntitySet Name="DepartmentInfoes" EntityType="ProgramInformationModel.DepartmentInfo" />
+    <EntitySet Name="ProgramInfoes" EntityType="ProgramInformationModel.ProgramInfo" />
+    <EntitySet Name="SchoolInfoes" EntityType="ProgramInformationModel.SchoolInfo" />
+    <AssociationSet Name="FK_ChairInfo_DepartmentInfo" Association="ProgramInformationModel.FK_ChairInfo_DepartmentInfo">
+      <End Role="DepartmentInfo" EntitySet="DepartmentInfoes" />
+      <End Role="ChairInfo" EntitySet="ChairInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CoordinatorInfo_ProgramInfo" Association="ProgramInformationModel.FK_CoordinatorInfo_ProgramInfo">
+      <End Role="ProgramInfo" EntitySet="ProgramInfoes" />
+      <End Role="CoordinatorInfo" EntitySet="CoordinatorInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeanInfo_SchoolInfo" Association="ProgramInformationModel.FK_DeanInfo_SchoolInfo">
+      <End Role="SchoolInfo" EntitySet="SchoolInfoes" />
+      <End Role="DeanInfo" EntitySet="DeanInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentInfo_SchoolInfo" Association="ProgramInformationModel.FK_DepartmentInfo_SchoolInfo">
+      <End Role="SchoolInfo" EntitySet="SchoolInfoes" />
+      <End Role="DepartmentInfo" EntitySet="DepartmentInfoes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProgramInfo_DepartmentInfo" Association="ProgramInformationModel.FK_ProgramInfo_DepartmentInfo">
+      <End Role="DepartmentInfo" EntitySet="DepartmentInfoes" />
+      <End Role="ProgramInfo" EntitySet="ProgramInfoes" />
+    </AssociationSet>
+    <EntitySet Name="CVSApprovals" EntityType="ProgramInformationModel.CVSApproval" />
+    <AssociationSet Name="FK_CVSApproval_ProgramInfo" Association="ProgramInformationModel.FK_CVSApproval_ProgramInfo">
+      <End Role="ProgramInfo" EntitySet="ProgramInfoes" />
+      <End Role="CVSApproval" EntitySet="CVSApprovals" />
+    </AssociationSet>
+    <EntitySet Name="MTCUApprovals" EntityType="ProgramInformationModel.MTCUApproval" />
+    <AssociationSet Name="FK_MTCUApproval_ProgramInfo" Association="ProgramInformationModel.FK_MTCUApproval_ProgramInfo">
+      <End Role="ProgramInfo" EntitySet="ProgramInfoes" />
+      <End Role="MTCUApproval" EntitySet="MTCUApprovals" />
+    </AssociationSet>
+    <EntitySet Name="PEQABReports" EntityType="ProgramInformationModel.PEQABReport" />
+    <AssociationSet Name="FK_PEQABReport_ProgramInfo" Association="ProgramInformationModel.FK_PEQABReport_ProgramInfo">
+      <End Role="ProgramInfo" EntitySet="ProgramInfoes" />
+      <End Role="PEQABReport" EntitySet="PEQABReports" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ChairInfo">
+    <Key>
+      <PropertyRef Name="ChairID" />
+    </Key>
+    <Property Name="ChairID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DepartmentAbbrev" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ChairFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ChairLastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Acting" Type="Boolean" Nullable="false" />
+    <Property Name="ChairStartDate" Type="DateTime" Precision="0" />
+    <Property Name="ChairEndDate" Type="DateTime" Precision="0" />
+    <Property Name="ChairDescription" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DepartmentInfo" Relationship="ProgramInformationModel.FK_ChairInfo_DepartmentInfo" FromRole="ChairInfo" ToRole="DepartmentInfo" />
+  </EntityType>
+  <EntityType Name="CoordinatorInfo">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+    </Key>
+    <Property Name="CoordinatorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgramCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CoordinatorFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CoordinatorLastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Acting" Type="Boolean" Nullable="false" />
+    <Property Name="CoordinatorStartDate" Type="DateTime" Precision="0" />
+    <Property Name="CoordinatorEndDate" Type="DateTime" Precision="0" />
+    <Property Name="CoordinatorDescription" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProgramInfo" Relationship="ProgramInformationModel.FK_CoordinatorInfo_ProgramInfo" FromRole="CoordinatorInfo" ToRole="ProgramInfo" />
+  </EntityType>
+  <EntityType Name="DeanInfo">
+    <Key>
+      <PropertyRef Name="DeanID" />
+    </Key>
+    <Property Name="DeanID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SchoolAbbrev" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeanFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeanLastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DeanStartDate" Type="DateTime" Precision="0" />
+    <Property Name="DeanEndDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Acting" Type="Boolean" />
+    <Property Name="DeanDescription" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SchoolInfo" Relationship="ProgramInformationModel.FK_DeanInfo_SchoolInfo" FromRole="DeanInfo" ToRole="SchoolInfo" />
+  </EntityType>
+  <EntityType Name="DepartmentInfo">
+    <Key>
+      <PropertyRef Name="DepartmentAbbrev" />
+    </Key>
+    <Property Name="DepartmentAbbrev" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SchoolAbbrev" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DepartmentName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ChairInfoes" Relationship="ProgramInformationModel.FK_ChairInfo_DepartmentInfo" FromRole="DepartmentInfo" ToRole="ChairInfo" />
+    <NavigationProperty Name="SchoolInfo" Relationship="ProgramInformationModel.FK_DepartmentInfo_SchoolInfo" FromRole="DepartmentInfo" ToRole="SchoolInfo" />
+    <NavigationProperty Name="ProgramInfoes" Relationship="ProgramInformationModel.FK_ProgramInfo_DepartmentInfo" FromRole="DepartmentInfo" ToRole="ProgramInfo" />
+  </EntityType>
+  <EntityType Name="ProgramInfo">
+    <Key>
+      <PropertyRef Name="ProgramCode" />
+    </Key>
+    <Property Name="ProgramCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DepartmentAbbrev" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProgramName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Credential" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProgramDuration" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ProgramStatus" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Reason" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CoordinatorInfoes" Relationship="ProgramInformationModel.FK_CoordinatorInfo_ProgramInfo" FromRole="ProgramInfo" ToRole="CoordinatorInfo" />
+    <NavigationProperty Name="DepartmentInfo" Relationship="ProgramInformationModel.FK_ProgramInfo_DepartmentInfo" FromRole="ProgramInfo" ToRole="DepartmentInfo" />
+    <NavigationProperty Name="CVSApprovals" Relationship="ProgramInformationModel.FK_CVSApproval_ProgramInfo" FromRole="ProgramInfo" ToRole="CVSApproval" />
+    <NavigationProperty Name="MTCUApprovals" Relationship="ProgramInformationModel.FK_MTCUApproval_ProgramInfo" FromRole="ProgramInfo" ToRole="MTCUApproval" />
+    <NavigationProperty Name="PEQABReports" Relationship="ProgramInformationModel.FK_PEQABReport_ProgramInfo" FromRole="ProgramInfo" ToRole="PEQABReport" />
+  </EntityType>
+  <EntityType Name="SchoolInfo">
+    <Key>
+      <PropertyRef Name="SchoolAbbrev" />
+    </Key>
+    <Property Name="SchoolAbbrev" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SchoolName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SchoolDescription" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DeanInfoes" Relationship="ProgramInformationModel.FK_DeanInfo_SchoolInfo" FromRole="SchoolInfo" ToRole="DeanInfo" />
+    <NavigationProperty Name="DepartmentInfoes" Relationship="ProgramInformationModel.FK_DepartmentInfo_SchoolInfo" FromRole="SchoolInfo" ToRole="DepartmentInfo" />
+  </EntityType>
+  <Association Name="FK_ChairInfo_DepartmentInfo">
+    <End Type="ProgramInformationModel.DepartmentInfo" Role="DepartmentInfo" Multiplicity="1" />
+    <End Type="ProgramInformationModel.ChairInfo" Role="ChairInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DepartmentInfo">
+        <PropertyRef Name="DepartmentAbbrev" />
+      </Principal>
+      <Dependent Role="ChairInfo">
+        <PropertyRef Name="DepartmentAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CoordinatorInfo_ProgramInfo">
+    <End Type="ProgramInformationModel.ProgramInfo" Role="ProgramInfo" Multiplicity="1" />
+    <End Type="ProgramInformationModel.CoordinatorInfo" Role="CoordinatorInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProgramInfo">
+        <PropertyRef Name="ProgramCode" />
+      </Principal>
+      <Dependent Role="CoordinatorInfo">
+        <PropertyRef Name="ProgramCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeanInfo_SchoolInfo">
+    <End Type="ProgramInformationModel.SchoolInfo" Role="SchoolInfo" Multiplicity="1" />
+    <End Type="ProgramInformationModel.DeanInfo" Role="DeanInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolInfo">
+        <PropertyRef Name="SchoolAbbrev" />
+      </Principal>
+      <Dependent Role="DeanInfo">
+        <PropertyRef Name="SchoolAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentInfo_SchoolInfo">
+    <End Type="ProgramInformationModel.SchoolInfo" Role="SchoolInfo" Multiplicity="1" />
+    <End Type="ProgramInformationModel.DepartmentInfo" Role="DepartmentInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolInfo">
+        <PropertyRef Name="SchoolAbbrev" />
+      </Principal>
+      <Dependent Role="DepartmentInfo">
+        <PropertyRef Name="SchoolAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProgramInfo_DepartmentInfo">
+    <End Type="ProgramInformationModel.DepartmentInfo" Role="DepartmentInfo" Multiplicity="1" />
+    <End Type="ProgramInformationModel.ProgramInfo" Role="ProgramInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DepartmentInfo">
+        <PropertyRef Name="DepartmentAbbrev" />
+      </Principal>
+      <Dependent Role="ProgramInfo">
+        <PropertyRef Name="DepartmentAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="CVSApproval">
+    <Key>
+      <PropertyRef Name="CVSID" />
+    </Key>
+    <Property Name="CVSID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgramAbbrev" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CVSApplication" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ModelRoute" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CVSValidation" Type="Boolean" Nullable="false" />
+    <Property Name="ResponseDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ValidationLetter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProgramInfo" Relationship="ProgramInformationModel.FK_CVSApproval_ProgramInfo" FromRole="CVSApproval" ToRole="ProgramInfo" />
+  </EntityType>
+  <Association Name="FK_CVSApproval_ProgramInfo">
+    <End Type="ProgramInformationModel.ProgramInfo" Role="ProgramInfo" Multiplicity="1" />
+    <End Type="ProgramInformationModel.CVSApproval" Role="CVSApproval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProgramInfo">
+        <PropertyRef Name="ProgramCode" />
+      </Principal>
+      <Dependent Role="CVSApproval">
+        <PropertyRef Name="ProgramAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MTCUApproval">
+    <Key>
+      <PropertyRef Name="MTCUID" />
+    </Key>
+    <Property Name="MTCUID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgramAbbrev" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MTCURequest" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MTCUDecision" Type="Boolean" Nullable="false" />
+    <Property Name="ResponseDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ApprovalLetter" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FundingCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FundingName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="APSCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="APSName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProgramInfo" Relationship="ProgramInformationModel.FK_MTCUApproval_ProgramInfo" FromRole="MTCUApproval" ToRole="ProgramInfo" />
+  </EntityType>
+  <Association Name="FK_MTCUApproval_ProgramInfo">
+    <End Type="ProgramInformationModel.ProgramInfo" Role="ProgramInfo" Multiplicity="1" />
+    <End Type="ProgramInformationModel.MTCUApproval" Role="MTCUApproval" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProgramInfo">
+        <PropertyRef Name="ProgramCode" />
+      </Principal>
+      <Dependent Role="MTCUApproval">
+        <PropertyRef Name="ProgramAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PEQABReport">
+    <Key>
+      <PropertyRef Name="PEQABID" />
+    </Key>
+    <Property Name="PEQABID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgramAbbrev" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PEQABApprovalReprot" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PEAQBDesicion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ResponseDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="ProgramInfo" Relationship="ProgramInformationModel.FK_PEQABReport_ProgramInfo" FromRole="PEQABReport" ToRole="ProgramInfo" />
+  </EntityType>
+  <Association Name="FK_PEQABReport_ProgramInfo">
+    <End Type="ProgramInformationModel.ProgramInfo" Role="ProgramInfo" Multiplicity="1" />
+    <End Type="ProgramInformationModel.PEQABReport" Role="PEQABReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProgramInfo">
+        <PropertyRef Name="ProgramCode" />
+      </Principal>
+      <Dependent Role="PEQABReport">
+        <PropertyRef Name="ProgramAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,115 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="ProgramInformationApplication.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Master Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/GreyRedStyleSheet.css" rel="stylesheet" />
+    <link href="css/modern-business.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/SchoolTable_StyleSheet.css" media="screen" type="text/css" />
+    <link rel="stylesheet" href="css/StyleSheet_CSS.css" media="screen" type="text/css" /> 
+    <link href="css/jasny-bootstrap.min.css" rel="stylesheet" media="screen" />
+    <script src="js/jasny-bootstrap.min.js"></script>
+<%--    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>--%>
+
+    <%--<script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+    <script src="js/index.js"></script>--%>
+
+    <%--<script src="js/sweet-alert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/sweet-alert.css">--%>
+
+    <asp:ContentPlaceHolder id="ContentPlaceHolderHead" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="masterPageForm" runat="server">
+        <section>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1>Centre For Academic Quality </h1>
+                </div>
+            </div>
+        </section>
+
+        <div id='cssmenu' style="margin-top: -30px">
+            <ul>
+                <li class='active'><a href='Default.aspx'><span>Home</span></a></li>
+<%--                <li class='has-sub'><a href='#'><span>Reports</span></a>
+                    <ul>
+                        <li><a href='ReportPage.aspx'><span>Comprehensive Report</span></a></li>
+                        <li><a href='#'><span>Custom Report</span></a></li>
+                    </ul>
+                </li>--%>
+                 <li class='has-sub'><a href='#'><span>Add Data</span></a>
+                    <ul>
+                        <li><a href='AddChairInfo.aspx'><span>Chair Information</span></a></li>
+                        <li><a href='AddCoordinatorInfo.aspx'><span>Coordinator Information</span></a></li>
+                        <li><a href='AddDeanInfo.aspx'><span>Dean Information</span></a></li>
+                        <li><a href='AddDepartmentInfo.aspx'><span>Department Information</span></a></li>
+                        <li><a href='AddSchoolInfo.aspx'><span>School Information</span></a></li>
+                        <li class='last'><a href='AddProgram.aspx'><span>Program Information</span></a></li>
+                    </ul>
+                </li>
+                <li class='has-sub'><a href='#'><span>Change Program Status</span></a>
+                    <ul>
+                       <%-- <li><a href='MappingForm.aspx'><span>Mapping Form</span></a></li>--%>
+                        <li><a href='DisapproveOrApprove.aspx'><span>Approve or Disapprove</span></a></li>
+                        <li><a href='SuspendOrCancel.aspx'><span>Suspend or Cancel</span></a></li>
+                       <%-- <li><a href='ContactInformation.aspx'><span>Faculty Contact Info</span></a></li>
+                        <li><a href='#'><span>PAC Contact Info</span></a></li>--%>
+<%--                        <li><a href='ProgramInformation.aspx'><span>Program Information</span></a></li>--%>
+                        <li class='last'><a href='UnsuspendOrCancel.aspx'><span>Unsuspend or Cancel</span></a></li>
+<%--                        <li><a href='CPQR.aspx'><span>CPQR</span></a></li>--%>
+
+                    </ul>
+                </li>
+                <li class='has-sub'><a href='CreateFolder.aspx'><span>Create Folders</span></a>
+                </li>
+             
+<%--                <li class='has-sub'><a href='#'><span>Contact Information</span></a>
+                    <ul>
+                        <li><a href='#'><span>Faculty Information</span></a></li>
+                        <li class='last'><a href='#'><span>PAC Information</span></a></li>
+                    </ul>
+                </li>--%>
+                <li class='has-sub'><a href='#'><span>Program Approval Upload</span></a>
+                    <ul>
+                        <li><a href='CVSApprovalForm.aspx'><span>CVS Approval Form</span></a></li>
+                        <li><a href='MTCUApprovalForm.aspx'><span>MTCU Approval Form</span></a></li>
+                        <li><a href='PEQABReportForm.aspx'><span>PEQAB Approval Form</span></a></li>
+                    </ul>
+                </li>
+                <li class='last'><a href='AboutUs.aspx'><span>Logout (About Us for Now)</span></a></li>
+                <li class='last'><a href='Download.aspx'><span>Download</span></a></li>
+            </ul>
+        </div>
+        
+
+        <br />
+        <asp:ContentPlaceHolder id="ContentPlaceHolderBody" runat="server">        
+        </asp:ContentPlaceHolder>
+        <br />
+        <hr />
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p style="text-align: center;">&copy; Team Zhao Copyright 2015</p>
+                </div>
+            </div>
+        </footer>
+    </form>
+</body>
+</html>

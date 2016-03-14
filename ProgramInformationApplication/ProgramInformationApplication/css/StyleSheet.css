@@ -1,0 +1,26 @@
+﻿#footerMargin {
+    margin-bottom: -20px;
+}
+
+hr {
+    height: 0px;
+    line-height: 20px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 1140px;
+}
+#bannerBackground{ 
+
+    background-image: url('http://localhost:32944/images/bannerimg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #252336;
+    width: inherit;
+    height: 500px;
+}
+
+extra {
+        
+            background-position: top center;
+
+}

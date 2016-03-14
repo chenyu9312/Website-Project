@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProgramInformationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ChairInfo">
+    <Key>
+      <PropertyRef Name="ChairID" />
+    </Key>
+    <Property Name="ChairID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolAbbrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartmentAbbrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ChairFirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ChairLastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Acting" Type="bit" Nullable="false" />
+    <Property Name="ChairStartDate" Type="date" />
+    <Property Name="ChairEndDate" Type="date" />
+    <Property Name="ChairDescription" Type="varbinary" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="CoordinatorInfo">
+    <Key>
+      <PropertyRef Name="CoordinatorID" />
+    </Key>
+    <Property Name="CoordinatorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolAbbrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartmentAbbrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProgramCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CoordinatorFirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CoordinatorLastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Acting" Type="bit" Nullable="false" />
+    <Property Name="CoordinatorStartDate" Type="date" />
+    <Property Name="CoordinatorEndDate" Type="date" />
+    <Property Name="CoordinatorDescription" Type="varchar" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="DeanInfo">
+    <Key>
+      <PropertyRef Name="DeanID" />
+    </Key>
+    <Property Name="DeanID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SchoolAbbrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DeanFIrstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DeanLastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DeanStartDate" Type="date" />
+    <Property Name="DeanEndDate" Type="date" Nullable="false" />
+    <Property Name="Acting" Type="bit" />
+    <Property Name="DeanDescription" Type="varchar" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="DepartmentInfo">
+    <Key>
+      <PropertyRef Name="DepartmentAbbrev" />
+    </Key>
+    <Property Name="DepartmentAbbrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SchoolAbbrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartmentName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartmentStartDate" Type="date" />
+    <Property Name="DepartmentEndDate" Type="date" />
+  </EntityType>
+  <EntityType Name="ProgramInfo">
+    <Key>
+      <PropertyRef Name="ProgramCode" />
+    </Key>
+    <Property Name="ProgramCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SchoolAbbrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DepartmentAbbrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ProgramName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Credential" Type="int" Nullable="false" />
+    <Property Name="ProgramDuration" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SchoolInfo">
+    <Key>
+      <PropertyRef Name="SchoolAbbrev" />
+    </Key>
+    <Property Name="SchoolAbbrev" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SchoolName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SchoolDescription" Type="varchar" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_ChairInfo_DepartmentInfo">
+    <End Role="DepartmentInfo" Type="Self.DepartmentInfo" Multiplicity="1" />
+    <End Role="ChairInfo" Type="Self.ChairInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DepartmentInfo">
+        <PropertyRef Name="DepartmentAbbrev" />
+      </Principal>
+      <Dependent Role="ChairInfo">
+        <PropertyRef Name="DepartmentAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CoordinatorInfo_ProgramInfo">
+    <End Role="ProgramInfo" Type="Self.ProgramInfo" Multiplicity="1" />
+    <End Role="CoordinatorInfo" Type="Self.CoordinatorInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProgramInfo">
+        <PropertyRef Name="ProgramCode" />
+      </Principal>
+      <Dependent Role="CoordinatorInfo">
+        <PropertyRef Name="ProgramCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DeanInfo_SchoolInfo">
+    <End Role="SchoolInfo" Type="Self.SchoolInfo" Multiplicity="1" />
+    <End Role="DeanInfo" Type="Self.DeanInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolInfo">
+        <PropertyRef Name="SchoolAbbrev" />
+      </Principal>
+      <Dependent Role="DeanInfo">
+        <PropertyRef Name="SchoolAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DepartmentInfo_SchoolInfo">
+    <End Role="SchoolInfo" Type="Self.SchoolInfo" Multiplicity="1" />
+    <End Role="DepartmentInfo" Type="Self.DepartmentInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SchoolInfo">
+        <PropertyRef Name="SchoolAbbrev" />
+      </Principal>
+      <Dependent Role="DepartmentInfo">
+        <PropertyRef Name="SchoolAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProgramInfo_DepartmentInfo">
+    <End Role="DepartmentInfo" Type="Self.DepartmentInfo" Multiplicity="1" />
+    <End Role="ProgramInfo" Type="Self.ProgramInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DepartmentInfo">
+        <PropertyRef Name="DepartmentAbbrev" />
+      </Principal>
+      <Dependent Role="ProgramInfo">
+        <PropertyRef Name="DepartmentAbbrev" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ProgramInformationModelStoreContainer">
+    <EntitySet Name="ChairInfo" EntityType="Self.ChairInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CoordinatorInfo" EntityType="Self.CoordinatorInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeanInfo" EntityType="Self.DeanInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DepartmentInfo" EntityType="Self.DepartmentInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProgramInfo" EntityType="Self.ProgramInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SchoolInfo" EntityType="Self.SchoolInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ChairInfo_DepartmentInfo" Association="Self.FK_ChairInfo_DepartmentInfo">
+      <End Role="DepartmentInfo" EntitySet="DepartmentInfo" />
+      <End Role="ChairInfo" EntitySet="ChairInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CoordinatorInfo_ProgramInfo" Association="Self.FK_CoordinatorInfo_ProgramInfo">
+      <End Role="ProgramInfo" EntitySet="ProgramInfo" />
+      <End Role="CoordinatorInfo" EntitySet="CoordinatorInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DeanInfo_SchoolInfo" Association="Self.FK_DeanInfo_SchoolInfo">
+      <End Role="SchoolInfo" EntitySet="SchoolInfo" />
+      <End Role="DeanInfo" EntitySet="DeanInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DepartmentInfo_SchoolInfo" Association="Self.FK_DepartmentInfo_SchoolInfo">
+      <End Role="SchoolInfo" EntitySet="SchoolInfo" />
+      <End Role="DepartmentInfo" EntitySet="DepartmentInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProgramInfo_DepartmentInfo" Association="Self.FK_ProgramInfo_DepartmentInfo">
+      <End Role="DepartmentInfo" EntitySet="DepartmentInfo" />
+      <End Role="ProgramInfo" EntitySet="ProgramInfo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
